@@ -1,6 +1,9 @@
 <?php
     session_start();
-    include_once 'classes/Database.php';
+	spl_autoload_register(function($class){
+		require 'classes/'.$class.'.php';
+	});
+  
 
     define("DB_HOST", "localhost");
     define("DB_NAME", "blogger");
