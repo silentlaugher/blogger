@@ -1,7 +1,9 @@
 <?php 
     include_once 'partials/headers.php';
 
-    header("location: login.php");
+    include_once 'backend/classes/Database.php';
+    //header("location: login.php");
+    
 ?>
     
 <?php 
