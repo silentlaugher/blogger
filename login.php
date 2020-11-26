@@ -1,5 +1,25 @@
 <?php 
     include_once 'partials/headers.php';
+    include_once 'backend/init.php';
+
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if(isset($_POST['login'])){
+            $email = Validate::escape($_POST['email']);
+            $password = $_POST['password'];
+
+            if(!empty($email) && !empty($password
+            )){
+                if(!Validate::filterEmail($email)){
+                    $error = "Invalid email format";
+                }else{
+                    
+                }
+
+            }else{
+                $error = "Please enter your email and password!";
+            }
+        }
+    }
 ?>
         <!--WRAPPER-->
     <div class="wrapper">	
@@ -26,7 +46,7 @@
                                 <span class="in-span">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                <div>Here will be listed any errors</div>
+                                <div><?php if(isset($error)){ echo $error; }; ?></div>
                             </div>
                         </div>
                     </div>
