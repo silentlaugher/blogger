@@ -12,5 +12,9 @@
             $stmt->execute();
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
+
+        public function hash($password){
+            return password_hash($password, PASSWORD_BCRYPT);
+        }
     }
 ?>
