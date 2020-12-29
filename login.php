@@ -12,7 +12,9 @@
                 if(!Validate::filterEmail($email)){
                     $error = "Invalid email format";
                 }else{
-                    
+                    if($user = $userObj->emailExist($email)){
+                        echo $user->fullName;
+                    }
                 }
 
             }else{

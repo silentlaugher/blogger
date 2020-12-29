@@ -11,4 +11,6 @@
     define("DB_PASS", "");
     define("BASE_URL", "http://localhost/blogger/");
 
+    $userObj = new Users;
+
 ?>
