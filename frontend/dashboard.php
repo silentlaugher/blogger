@@ -1,12 +1,14 @@
 <?php 
-    
+    include '../backend/init.php';
+
+    $user = $userObj->userData();
 ?>
 
 <!DOCTYPE HTML>
 <html>
 <head>
 	<title>Dashboard - Blogger</title>
-	<link rel="stylesheet" href="{BASE_URL}frontend/assets/css/style.css"/>
+	<link rel="stylesheet" href="<?php echo BASE_URL; ?>frontend/assets/css/style.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet"> 
@@ -35,7 +37,7 @@
 			<div class="header-right fl-2">
 				<div class="h-r-in">
 					<!-- Profile Image -->
-					<img src="{BASE_URL}{ProfileImage}"/>
+					<img src="<?php echo BASE_URL.$user->profileImage; ?>"/>
 					<div class="log-out">
 						<div>
 							<a href="{BASE_URL}frontend/logout.php">logout</a>
@@ -83,10 +85,10 @@
 				<div class="flex fl-row fl-1">
 					<!-- profile Image -->
 					<div class="avatar-image">
-						<img src="{BASE_URL}{ProfileImage}">
+						<img src="<?php echo BASE_URL.$user->profileImage; ?>">
 					</div>
-					<div class="fl-1">Using Mylogger as 
-						<span class="bold">{FULL-NAME}</span>
+					<div class="fl-1">Using blogger as 
+						<span class="bold"><?php echo $user->fullName; ?></span>
 					</div>
 				</div>
 			</div>
