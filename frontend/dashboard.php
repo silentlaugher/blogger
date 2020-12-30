@@ -243,5 +243,6 @@
 	<!--MAIN-DIV-ENDS-HERE-->
 </div>
 </div>
-</body>
-</html>
+<?php
+    include_once 'partials/footers.php';
+?> 
