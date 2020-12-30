@@ -1,5 +1,37 @@
 <?php 
     include_once 'partials/headers.php';
+    include_once 'backend/init.php';
+
+    if($userObj->isLoggedIn()){
+        header("Location: frontend/dashboard.php");
+    }
+
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
+        if(isset($_POST['login'])){
+            $email = Validate::escape($_POST['email']);
+            $password = $_POST['password'];
+
+            if(!empty($email) && !empty($password
+            )){
+                if(!Validate::filterEmail($email)){
+                    $error = "Invalid email format";
+                }else{
+                    if($user = $userObj->emailExist($email)){
+                        $hash = $user->password;
+                        if(password_verify($password, $hash)){
+                            $_SESSION['user_id'] = $user->userID;
+                            header("Location: frontend/dashboard.php");
+                        }else{
+                            $error = "Your email or password is incorrect!";
+                        }
+                    }
+                }
+
+            }else{
+                $error = "Please enter your email and password!";
+            }
+        }
+    }
 ?>
         <!--WRAPPER-->
     <div class="wrapper">	
@@ -26,7 +58,7 @@
                                 <span class="in-span">
                                     <i class="fas fa-lock"></i>
                                 </span>
-                                <div>Here will be listed any errors</div>
+                                <div><?php if(isset($error)){ echo $error; }; ?></div>
                             </div>
                         </div>
                     </div>
