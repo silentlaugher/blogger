@@ -22,16 +22,33 @@ button.addEventListener("click", function(event){
             if(newLabelValue != null || newLabelValue != ''){
                 var regex  = /^[a-z0-9]+/i;
                 var label  = newLabelValue.match(regex);
-                if(label !== null){
-                    //Ajax request
-                    alert("It's working");
-                }
-            }
+                
+				if(label !== null){
+					//Ajax request
+					var formData  = new FormData();
 
-        }else{
-            alert("No posts are selected");
-            location.reload(true);
-        }
+					formData.append("newLabel", label);
+					formData.append("postID", JSON.stringify(array));
+					formData.append("blogID", this.dataset.blog);
+
+					var httpRequest = new XMLHttpRequest();
+
+					if(httpRequest){
+						httpRequest.open('POST', 'http://localhost/MyBlogger/backend/ajax/addLabel.php', true);
+						httpRequest.onreadystatechange = function(){
+							if(this.readyState === 4 && this.status === 200){
+ 								location.reload(true);
+							}
+						}
+
+						httpRequest.send(formData);
+					}
+				}
+			}
+		}else{
+			alert("No posts are selected!");
+			location.reload(true);
+		}
 	});
     
     document.onclick = function(e){
