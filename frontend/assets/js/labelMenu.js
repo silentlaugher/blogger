@@ -7,8 +7,8 @@ button.addEventListener("click", function(event){
     var newLabel = document.querySelector("#newLabel");
 
     newLabel.addEventListener("click", function(event){
-		var checkBox  = document.querySelectorAll(".postCheckBox");
-		var array     = new Array();
+		var checkBox = document.querySelectorAll(".postCheckBox");
+		var array = new Array();
 
 		checkBox.forEach(function(el){
 			if(el.checked){
@@ -22,7 +22,7 @@ button.addEventListener("click", function(event){
             if(newLabelValue != null || newLabelValue != ''){
                 var regex  = /^[a-z0-9]+/i;
                 var label  = newLabelValue.match(regex);
-                
+
 				if(label !== null){
 					//Ajax request
 					var formData  = new FormData();
@@ -34,7 +34,7 @@ button.addEventListener("click", function(event){
 					var httpRequest = new XMLHttpRequest();
 
 					if(httpRequest){
-						httpRequest.open('POST', 'http://localhost/MyBlogger/backend/ajax/addLabel.php', true);
+						httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/addLabel.php', true);
 						httpRequest.onreadystatechange = function(){
 							if(this.readyState === 4 && this.status === 200){
  								location.reload(true);

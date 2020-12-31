@@ -20,7 +20,8 @@
  								if($label){
  									// delete label
  								}else{
- 									// create label
+                                     // create label
+                                     $userObj->create('labels', ['labelName' => $newLabel, 'postID' => $postID, 'blogID' =>  $blog->blogID]);
       						}
  
  							}
