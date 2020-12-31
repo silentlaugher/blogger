@@ -106,7 +106,7 @@
 			$i = 1;
 			$return = '';
 			foreach($labels as $label){
-                $return .= '<li><a href="#">'.$label->labelName.'</a></li>'.(($i < count($labels)) ? ',' : '');
+                $return .= '<li><a href="#">'.$label->labelName.'</a></li>'.(($i < count($labels)) ? ', ' : '');
                 $i++;
 			}
 			return $return;
