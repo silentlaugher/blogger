@@ -194,7 +194,7 @@
 								<li>
 									<a href="javascript:;" id="newLabel">New label...</a>
 								</li>
-								 {LABEL MENU}
+                                <?php $dashObj->getLabelsMenu($blog->blogID); ?>
 							</ul>
 						</div>
 
