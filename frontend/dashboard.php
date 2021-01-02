@@ -245,6 +245,7 @@
  			</div>
              <!-- JS FILES -->
              <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/labelMenu.js"></script>
+             <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/postStatus.js"></script>
 		</div>
 		<!--MAIN-Right-inner-DIV-ENDS-HERE-->
 		</div>
