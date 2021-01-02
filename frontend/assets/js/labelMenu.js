@@ -2,6 +2,7 @@ var button    = document.querySelector("#labelMenu");
 var labelMenu = document.querySelector(".label-menu");
 var label     = document.querySelectorAll('.label');
 var blogID    = document.querySelector("#newLabel").dataset.blog;
+var checkAll  = document.querySelector("#checkAll");
 
 button.addEventListener("click", function(event){
 	event.stopPropagation();
@@ -76,7 +77,7 @@ label.forEach(function(el){
 		});
 
 		if(array.length > 0){
-			//Ajax request
+			//ajax request
 			var formData  = new FormData();
 
 			formData.append("newLabel", el.textContent);
@@ -101,4 +102,17 @@ label.forEach(function(el){
 			location.reload(true);
 		}
 	});
+});
+
+checkAll.addEventListener("change", function(e){
+	var checkBox  = document.querySelectorAll('.postCheckBox');
+
+	checkBox.forEach(function(el){
+		el.checked = true;
+	});
+	if(this.checked === false){
+		checkBox.forEach(function(el){
+			el.checked = false;
+		});
+	}
 });
