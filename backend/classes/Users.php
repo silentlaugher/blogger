@@ -41,6 +41,7 @@
             $sql = "SELECT * FROM `{$table}`";
             foreach($fields as $key => $value){
                 $sql .= "{$where} `{$key}` = :{$key}";
+                $where = " AND ";
             }
 
             if($stmt = $this->db->prepare($sql)){
