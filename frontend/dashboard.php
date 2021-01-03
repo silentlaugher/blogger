@@ -241,7 +241,15 @@
 			<!--main-right-Content-->
 			<div id="posts" class="main-right-content fl-4">
 				<!-- POSTS -->
-				<?php $dashObj->getAllPosts('Post','',$blog->blogID); ?>
+                <?php 
+                    if(strpos($_SERVER['REQUEST_URI'], '?type=published')){
+                        $dashObj->getAllPosts('1','10','Post','published',$blog->blogID);
+                    }else if(strpos($_SERVER['REQUEST_URI'], '?type=draft')){
+                        $dashObj->getAllPosts('1','10','Post','draft',$blog->blogID);
+                    }else{
+                        $dashObj->getAllPosts('1','10','Post','',$blog->blogID);
+                    }
+                ?>
  			</div>
              <!-- JS FILES -->
              <script type="text/javascript" src="<?php echo BASE_URL; ?>frontend/assets/js/labelMenu.js"></script>
