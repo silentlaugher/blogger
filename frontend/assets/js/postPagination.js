@@ -74,7 +74,44 @@ button.addEventListener("click", function(event){
 	}
 });
 
+nextBtn.addEventListener("click", function(event){
+	var currentNum = currentPage.innerHTML.trim();
+	var lastPageNum = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
+	previousBtn.disabled = false;
+	previousBtn.classList.remove('disabled');
+
+	if(lastPageNum > currentNum){
+		currentNum++;
+		var formData  = new FormData();
+
+			formData.append("blogID", blogID);
+			formData.append("nextPage", currentNum);
+			formData.append("postLimit", 1);
+			formData.append("postStatus", postStatus);
+
+			var httpRequest = new XMLHttpRequest();
+
+			if(httpRequest){
+				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showNextPosts.php', true);
+				httpRequest.onreadystatechange = function(){
+					if(this.readyState === 4 && this.status === 200){
+						document.querySelector("#posts").innerHTML = this.responseText;
+						currentPage.innerHTML = currentNum;
+					}
+				}
+
+				httpRequest.send(formData);
+			}
+	}
+	if(lastPageNum-1 < currentNum){
+		nextBtn.disabled = true;
+		nextBtn.classList.add('disabled');
+	}
+});
+
 function enableBtn(){
 	button.disabled = false;
 	button.classList.remove('disabled');
+	nextBtn.disabled = false;
+	nextBtn.classList.remove('disabled');
 }
