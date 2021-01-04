@@ -12,5 +12,6 @@
     define("BASE_URL", "http://localhost/blogger/");
 
     $userObj = new Users;
+    $dashObj = new Dashboard;
 
 ?>
