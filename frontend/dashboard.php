@@ -125,17 +125,17 @@
 		<div class="main-left-inner flex fl-c fl-1">
 			<div class="main-menu fl-4">
 				<ul>
-					<li class="active"><span><i class="fas fa-newspaper"></i></span><a href="{BASE_URL}admin/blogID/{BLOG-ID}/dashboard/">Posts</a></li>
+					<li class="active"><span><i class="fas fa-newspaper"></i></span><a href="<?php echo BASE_URL;?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/">Posts</a></li>
 					<ul>
 						<li id="active" class="active">
-                        <a href="<?php echo BASE_URL;?>admin/blogID/<?php echo $blog->blogID;?>/dashboard/">All<?php $dashObj->getPostsCount('Post', '', $blog->blogID);?>
+                        <a href="<?php echo BASE_URL;?>admin/blogID/<?php echo $blog->blogID; ?>/dashboard/">All<?php $dashObj->getPostsCount('Post', '', $blog->blogID); ?>
 							</a>
 						</li>
 						<li>
-                        <a href="?type=draft" id="draft">Draft<?php $dashObj->getPostsCount('Post', 'draft', $blog->blogID);?></a>
+                        <a href="?type=draft" id="draft">Draft<?php $dashObj->getPostsCount('Post', 'draft', $blog->blogID); ?></a>
 						</li>
 						<li>
-                        <a href="?type=published" id="published">Published<?php $dashObj->getPostsCount('Post', 'published', $blog->blogID);?></a>
+                        <a href="?type=published" id="published">Published<?php $dashObj->getPostsCount('Post', 'published', $blog->blogID); ?></a>
 						</li>
 					</ul>
 					
