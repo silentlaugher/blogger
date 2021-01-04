@@ -252,11 +252,11 @@
 				<!-- POSTS -->
                 <?php 
                     if(strpos($_SERVER['REQUEST_URI'], '?type=published')){
-                        $dashObj->getAllPosts('1','10','Post','published',$blog->blogID);
+                        $dashObj->getAllPosts('1','1','Post','published',$blog->blogID);
                     }else if(strpos($_SERVER['REQUEST_URI'], '?type=draft')){
-                        $dashObj->getAllPosts('1','10','Post','draft',$blog->blogID);
+                        $dashObj->getAllPosts('1','1','Post','draft',$blog->blogID);
                     }else{
-                        $dashObj->getAllPosts('1','10','Post','',$blog->blogID);
+                        $dashObj->getAllPosts('1','1','Post','',$blog->blogID);
                     }
                 ?>
  			</div>

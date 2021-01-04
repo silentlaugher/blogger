@@ -5,6 +5,7 @@ var postLimit = document.querySelector("#pageLimit");
 var previousBtn = document.querySelector("#previousPage");
 var nextBtn = document.querySelector("#nextPage");
 var currentPage  = document.querySelector("#currentPageNum");
+var postStatus   = '';
 var blogID = nextBtn.dataset.blog;
 
 if(page.lastElementChild != null){
@@ -29,7 +30,8 @@ button.addEventListener("click", function(event){
 
 			formData.append("blogID", blogID);
 			formData.append("nextPage", el.innerHTML.trim());
-			formData.append("postLimit", postLimit.value);
+			formData.append("postLimit", 1);
+			formData.append("postStatus", postStatus);
 
 			var httpRequest = new XMLHttpRequest();
 
@@ -57,7 +59,7 @@ button.addEventListener("click", function(event){
 						}
 					}
 				}
-				
+
 				httpRequest.send(formData);
 			}
 		});
