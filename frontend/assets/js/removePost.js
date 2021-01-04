@@ -53,7 +53,7 @@ deleteBtn.addEventListener("click", function(e){
 				var httpRequest = new XMLHttpRequest();
 
 				if(httpRequest){
-					httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/removePosts.php', true);
+					httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/removePost.php', true);
 					httpRequest.onreadystatechange = function(){
 						if(this.readyState === 4 && this.status === 200){
 							if(this.responseText.length != 0){
