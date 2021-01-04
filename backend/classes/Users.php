@@ -35,6 +35,10 @@
             return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
+        public function redirect($location = ''){
+			header("Location:".BASE_URL.$location);
+		}
+
         public function get($table, $fields = array()){
             $where = " WHERE ";
             //sql query
