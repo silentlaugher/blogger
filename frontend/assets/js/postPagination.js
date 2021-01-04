@@ -145,9 +145,76 @@ previousBtn.addEventListener("click", function(event){
 	}
 });
 
+postLimit.addEventListener("change", function(e){
+	var jumpTo = this.value;
+	var formData = new FormData();
+
+	formData.append("blogID", blogID);
+	formData.append("postLimit", jumpTo);
+	formData.append("postStatus", postStatus);
+
+	var httpRequest = new XMLHttpRequest();
+
+	if(httpRequest){
+		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/jumpToPost.php', true);
+		httpRequest.onreadystatechange = function(){
+			if(this.readyState === 4 && this.status === 200){
+				document.querySelector("#posts").innerHTML = this.responseText;
+				currentPage.innerHTML = 1;
+				getPagesNumbers(jumpTo);
+			}
+		}
+
+		httpRequest.send(formData);
+	}
+});
+
+function getPageNumbers(jumpTo){
+	var formData  = new FormData();
+
+	formData.append("blogID", blogID);
+	formData.append("postLimit", jumpTo);
+	formData.append("postStatus", postStatus);
+
+	var httpRequest = new XMLHttpRequest();
+
+	if(httpRequest){
+		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/getPageNumbers.php', true);
+		httpRequest.onreadystatechange = function(){
+			if(this.readyState === 4 && this.status === 200){
+				var regex = /(25|50|100)/g;
+				var number = jumpTo.match(regex);
+				var page = document.querySelector("#page-num");
+				
+				if(number){
+					page.innerHTML = this.responseText;
+
+					if(page.textContent === "1"){
+						disableBtn();
+					}else{
+						enableBtn();
+					}
+				}
+			}
+		}
+
+		httpRequest.send(formData);
+	}
+}
+
 function enableBtn(){
+	postLimit.disabled = false;
 	button.disabled = false;
 	button.classList.remove('disabled');
 	nextBtn.disabled = false;
 	nextBtn.classList.remove('disabled');
+}
+
+function disableBtn(){
+	button.disabled = true;
+	button.classList.add('disabled');
+	nextBtn.disabled = true;
+	nextBtn.classList.add('disabled');
+	previousBtn.disabled = true;
+	previousBtn.classList.add('disabled');
 }
