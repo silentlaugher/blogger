@@ -29,8 +29,30 @@ formBtn.addEventListener("click", function(event){
 		if(email.value && name.value && pass.value && passRe.value !==''){
 			if(pass.value === passRe.value){
 				if(pass.value.length > 4){
-					//send ajax request
-                
+                    //send ajax request
+                var formData  = new FormData();
+
+                formData.append("email", email.value);
+                formData.append("name", name.value);
+                formData.append("pass", pass.value);
+                formData.append("passRe", passRe.value);
+                formData.append("file", file);
+
+                var httpRequest = new XMLHttpRequest();
+
+                if(httpRequest){
+                    httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/createAuthor.php', true);
+                    httpRequest.onreadystatechange = function(){
+                        if(this.readyState === 4 && this.status === 200){
+                            if(this.responseText.length != 0){
+                                alert(this.responseText);
+                            }
+                            location.reload(true);
+                        }
+                    }
+
+                    httpRequest.send(formData);
+                }	
 				}else{
 					document.querySelector("#passReError").innerHTML = "Password is too short!";
 				}
@@ -55,5 +77,15 @@ formBtn.addEventListener("click", function(event){
                 reader.readAsDataURL(this.files[0]);
             }
         }
+    });
+
+    document.querySelector("#formClose").addEventListener("click", function(event){
+        document.querySelector(".au-main").style.display = "none";
+        document.querySelector("#emailInput").value = '';
+        document.querySelector("#nameInput").value = '';
+        document.querySelector("#passInput").value = '';
+        document.querySelector("#passReInput").value = '';
+        document.querySelector("#file").value = '';
+        return false;
     });
 });
