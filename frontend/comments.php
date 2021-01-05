@@ -185,7 +185,7 @@
 						<div class="p-num">
 							<ul id="page-num">
                                 <?php 
-									$dashObj->getCommentsPage('1','Published',$blog->blogID);
+									$dashObj->getCommentsPage('10','Published',$blog->blogID);
 								?>
 							</ul>
 						</div>
@@ -210,7 +210,7 @@
 			<div class="main-right-content fl-4">
 				<!-- Comments -->
 				<div id="posts">
-                    <?php $dashObj->getAllComments('1','1','Published',$blog->blogID);?>
+                    <?php $dashObj->getAllComments('1','10','Published',$blog->blogID);?>
 				</div>
 			</div>
 
