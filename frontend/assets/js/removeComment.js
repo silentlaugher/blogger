@@ -1,6 +1,6 @@
-var deleteBtn   = document.querySelector("#commentBtn");
+var deleteBtn = document.querySelector("#commentBtn");
 var deleteLink = document.querySelectorAll("#deleteComment");
-var blogID     = deleteBtn.dataset.blog;
+var blogID = deleteBtn.dataset.blog;
 
 deleteLink.forEach(function(el){
 	el.addEventListener("click", function(e){
