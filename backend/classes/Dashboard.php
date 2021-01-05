@@ -267,7 +267,7 @@
 			}
 		}
 
-        public function getCommentPages($postLimit, $type, $blogID){
+        public function getCommentsPage($postLimit, $type, $blogID){
 			$sql ="SELECT * FROM `users` `U`, `comments` `C` LEFT JOIN `posts` `P` ON `P`.`postID` = `C`.`postID` WHERE `U`.`userID` = `P`.`authorID` AND `C`.`status` = :type AND `C`.`blogID` = :blogID ORDER BY `C`.`commentID` DESC";
 
 			$stmt = $this->db->prepare($sql);

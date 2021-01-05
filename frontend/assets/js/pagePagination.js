@@ -172,7 +172,7 @@ postLimit.addEventListener("change", function(e){
 			if(this.readyState === 4 && this.status === 200){
 				document.querySelector("#posts").innerHTML = this.responseText;
 				currentPage.innerHTML = 1;
-				getPagesNumbers(jumpTo);
+				getPageNumbers(jumpTo);
 			}
 		}
 
@@ -180,7 +180,7 @@ postLimit.addEventListener("change", function(e){
 	}
 });
 
-function getPagesNumbers(jumpTo){
+function getPageNumbers(jumpTo){
 	var formData  = new FormData();
 
 	formData.append("blogID", blogID);

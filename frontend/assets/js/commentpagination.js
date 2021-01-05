@@ -14,7 +14,6 @@ if(location.href.match(/Pending/gi)){
 	postStatus = 'Pending';
 }
 
-
 if(page.lastElementChild != null){
 	if(page.lastElementChild.innerHTML.trim() > 1){
 		enableBtn();
@@ -70,7 +69,6 @@ button.addEventListener("click", function(event){
 			}
 		});
 	});
-
 
 	document.onclick = function(e){
 		e.stopPropagation();
@@ -167,7 +165,7 @@ postLimit.addEventListener("change", function(e){
 			if(this.readyState === 4 && this.status === 200){
 				document.querySelector("#posts").innerHTML = this.responseText;
 				currentPage.innerHTML = 1;
-				getPagesNumbers(jumpTo);
+				getPageNumbers(jumpTo);
 			}
 		}
 
@@ -175,7 +173,7 @@ postLimit.addEventListener("change", function(e){
 	}
 });
 
-function getPagesNumbers(jumpTo){
+function getPageNumbers(jumpTo){
 	var formData  = new FormData();
 
 	formData.append("blogID", blogID);
@@ -185,7 +183,7 @@ function getPagesNumbers(jumpTo){
 	var httpRequest = new XMLHttpRequest();
 
 	if(httpRequest){
-		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/getCommentPage.php', true);
+		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/getCommentsPage.php', true);
 		httpRequest.onreadystatechange = function(){
 			if(this.readyState === 4 && this.status === 200){
 				var regex  = /(25|50|100)/g;
@@ -208,7 +206,6 @@ function getPagesNumbers(jumpTo){
 		httpRequest.send(formData);
 	}
 }
-
 
 function enableBtn(){
 	postLimit.disabled = false;

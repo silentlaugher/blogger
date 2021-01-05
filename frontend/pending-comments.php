@@ -15,7 +15,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Published Comments - Blogger</title>
+	<title>Pending Comments - MyBlogger</title>
 	<link rel="stylesheet" href="<?php echo BASE_URL;?>frontend/assets/css/style.css"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"/>
 
@@ -35,11 +35,11 @@
 				<div class="logo flex fl-row fl-1">
 					<div><i class="fab fa-blogger"></i></div>
 					<div class="fl-1">
-						<h3>Blogger</h3>
+						<h3>MyBlogger</h3>
 					</div>
 				</div>
 				<div class="fl-4">
-					<h3>Published comments</h3>
+					<h3>Pending comments</h3>
 				</div>
 			</div>
 			<div class="header-right fl-2">
@@ -79,7 +79,7 @@
 				</div>
 			</div>
 			<div>
-				<a href="http://<?php echo $blog->Domain;?>.localhost/blogger/" target="_blank">ViewBlog</a>
+				<a href="http://<?php echo $blog->Domain;?>.localhost/MyBlogger/" target="_blank">ViewBlog</a>
 			</div>
 		</div>
 		<div class="header-b-right flex fl-4">
@@ -119,11 +119,11 @@
 					</li>
 						 
 					<ul>
-						<li class="active">
+						<li>
 							<a href="<?php echo BASE_URL;?>admin/blogID/<?php echo $blog->blogID;?>/dashboard/comments">Published</a>
 						</li>
 
-						<li>
+						<li class="active">
 							<a href="<?php echo BASE_URL;?>admin/blogID/<?php echo $blog->blogID;?>/dashboard/pending/comments">Awaiting moderation</a>
 						</li>
 					</ul>
@@ -166,8 +166,9 @@
 							<input type="checkbox" id="checkAll">
 						</span>
 					</div>
-					<div class="fl-4">
-						<button id="commentBtn" data-blog="<?php echo $blog->blogID;?>">Delete</button>
+					<div class="fl-4">	
+ 						<button id="publishBtn" data-blog="<?php echo $blog->blogID;?>">Publish</button>
+ 						<button id="commentBtn" data-blog="<?php echo $blog->blogID;?>">Delete</button>
  					</div>
 				</div>
 				</div>
@@ -184,8 +185,8 @@
 						
 						<div class="p-num">
 							<ul id="page-num">
-                                <?php 
-									$dashObj->getCommentsPage('1','Published',$blog->blogID);
+								<?php 
+									$dashObj->getCommentsPage('10','Pending',$blog->blogID);
 								?>
 							</ul>
 						</div>
@@ -210,14 +211,15 @@
 			<div class="main-right-content fl-4">
 				<!-- Comments -->
 				<div id="posts">
-                    <?php $dashObj->getAllComments('1','1','Published',$blog->blogID);?>
+				 	<?php $dashObj->getAllComments('1','10','Pending',$blog->blogID);?>
 				</div>
 			</div>
 
 			<!-- js files -->
-            <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/commentPagination.js"></script>
-            <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/removeComment.js"></script>
-   		</div>
+			<script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/commentPagination.js"></script>
+			<script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/removeComment.js"></script>
+    		</div>
+
  		<!--MAIN-Right-inner-DIV-ENDS-HERE-->
 		</div>
 		<!--MAIN-Right-DIV-ENDS-HERE-->
