@@ -67,8 +67,8 @@ label.forEach(function(el){
 		event.preventDefault();
         event.stopPropagation();
         
-		var checkBox  = document.querySelectorAll(".postCheckBox");
-		var array     = new Array();
+		var checkBox = document.querySelectorAll(".postCheckBox");
+		var array = new Array();
 
 		checkBox.forEach(function(el){
 			if(el.checked){

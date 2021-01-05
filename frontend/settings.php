@@ -543,7 +543,7 @@
 	<!--setting-inner-ends-->
 	</div>
 	<!-- js files -->
-
+    <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/basicSettings.js"></script>
     </div>
 <!--MAIN-Right-DIV-ENDS-HERE-->
 	</div>
