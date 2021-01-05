@@ -38,5 +38,22 @@ formBtn.addEventListener("click", function(event){
 				document.querySelector("#passReError").innerHTML = "Passsword does not match!";
             }
         }
-	});
+    });
+    
+    document.querySelector('#file').addEventListener("change", function(event){
+        var regex = /(\.jpg|\.jpeg|\.png|\.zip)$/i;
+        if(!regex.exec(this.value)){
+            alert("Only '.jpeg','.jpg','.png', formats are allowed");
+            this.value = '';
+            return false;
+        }else{
+            if(this.files && this.files[0]){
+                var reader  = new FileReader();
+                reader.onload = function(event){
+                    document.querySelector("#previewImage").src = event.target.result;
+                }
+                reader.readAsDataURL(this.files[0]);
+            }
+        }
+    });
 });
