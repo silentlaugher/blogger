@@ -229,7 +229,7 @@
 											<div class="bt-error" id="emailError"> 	
 											</div>
 											<div class="ad-auth-head">
-												Add author Fullname
+												Add author Full name
 											</div>
 											<div>
 												<input type="text" name="fullname" id="nameInput">
@@ -544,6 +544,7 @@
 	</div>
 	<!-- js files -->
     <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/basicSettings.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/setAuthor.js"></script>
     </div>
 <!--MAIN-Right-DIV-ENDS-HERE-->
 	</div>
