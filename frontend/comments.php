@@ -184,7 +184,9 @@
 						
 						<div class="p-num">
 							<ul id="page-num">
-								{PAGE}
+                                <?php 
+									$dashObj->getCommentPages('1','Published',$blog->blogID);
+								?>
 							</ul>
 						</div>
 
