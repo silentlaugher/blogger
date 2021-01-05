@@ -1,23 +1,17 @@
-var button = document.querySelector("#postJumpMenu");
-var page = document.querySelector(".p-num > ul");
-var pageMenu = document.querySelector(".p-num");
-var postLimit = document.querySelector("#pageLimit");
-var previousBtn = document.querySelector("#previousPage");
-var nextBtn = document.querySelector("#nextPage");
+var button       = document.querySelector("#postJumpMenu");
+var page         = document.querySelector(".p-num > ul");
+var pageMenu     = document.querySelector(".p-num");
+var postLimit    = document.querySelector("#pageLimit");
+var previousBtn  = document.querySelector("#previousPage");
+var nextBtn  	 = document.querySelector("#nextPage");
 var currentPage  = document.querySelector("#currentPageNum");
 var active       = document.querySelector("#active");
-var postStatus   = '';
-var blogID = nextBtn.dataset.blog;
+var postStatus   = 'Published';
+var blogID       = nextBtn.dataset.blog;
 
-if(window.location.href.indexOf('draft') > -1){
-	active.classList.remove('active');
-	document.querySelector("#draft").classList.add('active');
-	postStatus = 'draft';
 
-}else if(window.location.href.indexOf('published') > -1){
-    active.classList.remove('active');
-	document.querySelector("#published").classList.add('active');
-	postStatus = 'published';
+if(location.href.match(/Pending/gi)){
+	postStatus = 'Pending';
 }
 
 if(page.lastElementChild != null){
@@ -36,8 +30,7 @@ button.addEventListener("click", function(event){
 	pages.forEach(function(el){
 		el.addEventListener("click", function(event){
 			var page  = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
-
-			// ajax request
+			//Ajax request
 			var formData  = new FormData();
 
 			formData.append("blogID", blogID);
@@ -48,7 +41,7 @@ button.addEventListener("click", function(event){
 			var httpRequest = new XMLHttpRequest();
 
 			if(httpRequest){
-				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showNextPost.php', true);
+				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showNextComment.php', true);
 				httpRequest.onreadystatechange = function(){
 					if(this.readyState === 4 && this.status === 200){
 						document.querySelector("#posts").innerHTML = this.responseText;
@@ -77,7 +70,6 @@ button.addEventListener("click", function(event){
 		});
 	});
 
-
 	document.onclick = function(e){
 		e.stopPropagation();
 		if(e.target !== button ){
@@ -87,8 +79,8 @@ button.addEventListener("click", function(event){
 });
 
 nextBtn.addEventListener("click", function(event){
-	var currentNum = currentPage.innerHTML.trim();
-	var lastPageNum = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
+	var currentNum   = currentPage.innerHTML.trim();
+	var lastPageNum  = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
 	previousBtn.disabled = false;
 	previousBtn.classList.remove('disabled');
 
@@ -104,7 +96,7 @@ nextBtn.addEventListener("click", function(event){
 			var httpRequest = new XMLHttpRequest();
 
 			if(httpRequest){
-				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showNextPost.php', true);
+				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showNextComment.php', true);
 				httpRequest.onreadystatechange = function(){
 					if(this.readyState === 4 && this.status === 200){
 						document.querySelector("#posts").innerHTML = this.responseText;
@@ -122,8 +114,8 @@ nextBtn.addEventListener("click", function(event){
 });
 
 previousBtn.addEventListener("click", function(event){
-	var currentNum = currentPage.innerHTML.trim();
-	var lastPageNum = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
+	var currentNum   = currentPage.innerHTML.trim();
+	var lastPageNum  = document.querySelector('.p-num > ul').lastElementChild.innerHTML.trim();
 
 	if(currentNum > '1'){
 		currentNum--;
@@ -140,7 +132,7 @@ previousBtn.addEventListener("click", function(event){
 			var httpRequest = new XMLHttpRequest();
 
 			if(httpRequest){
-				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showPreviousPost.php', true);
+				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/showPreviousComment.php', true);
 				httpRequest.onreadystatechange = function(){
 					if(this.readyState === 4 && this.status === 200){
 						document.querySelector("#posts").innerHTML = this.responseText;
@@ -158,8 +150,8 @@ previousBtn.addEventListener("click", function(event){
 });
 
 postLimit.addEventListener("change", function(e){
-	var jumpTo = this.value;
-	var formData = new FormData();
+	var jumpTo  = this.value;
+	var formData  = new FormData();
 
 	formData.append("blogID", blogID);
 	formData.append("postLimit", jumpTo);
@@ -168,7 +160,7 @@ postLimit.addEventListener("change", function(e){
 	var httpRequest = new XMLHttpRequest();
 
 	if(httpRequest){
-		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/jumpToPost.php', true);
+		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/jumpToComment.php', true);
 		httpRequest.onreadystatechange = function(){
 			if(this.readyState === 4 && this.status === 200){
 				document.querySelector("#posts").innerHTML = this.responseText;
@@ -191,12 +183,12 @@ function getPageNumbers(jumpTo){
 	var httpRequest = new XMLHttpRequest();
 
 	if(httpRequest){
-		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/getPageNumbers.php', true);
+		httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/getCommentsPage.php', true);
 		httpRequest.onreadystatechange = function(){
 			if(this.readyState === 4 && this.status === 200){
-				var regex = /(25|50|100)/g;
+				var regex  = /(25|50|100)/g;
 				var number = jumpTo.match(regex);
-				var page = document.querySelector("#page-num");
+				var page   = document.querySelector("#page-num");
 				
 				if(number){
 					page.innerHTML = this.responseText;
@@ -207,6 +199,7 @@ function getPageNumbers(jumpTo){
 						enableBtn();
 					}
 				}
+				
 			}
 		}
 
