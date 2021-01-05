@@ -36,7 +36,7 @@ button.addEventListener("click", function(event){
 
 			formData.append("blogID", blogID);
 			formData.append("nextPage", el.innerHTML.trim());
-			formData.append("postLimit", 1);
+			formData.append("postLimit", postLimit.value);
 			formData.append("postStatus", postStatus);
 
 			var httpRequest = new XMLHttpRequest();
@@ -92,7 +92,7 @@ nextBtn.addEventListener("click", function(event){
 
 			formData.append("blogID", blogID);
 			formData.append("nextPage", currentNum);
-			formData.append("postLimit", 1);
+			formData.append("postLimit", postLimit.value);
 			formData.append("postStatus", postStatus);
 
 			var httpRequest = new XMLHttpRequest();
@@ -128,7 +128,7 @@ previousBtn.addEventListener("click", function(event){
 
 			formData.append("blogID", blogID);
 			formData.append("previousPage", currentNum);
-			formData.append("postLimit", 1);
+			formData.append("postLimit", postLimit.value);
 			formData.append("postStatus", postStatus);
 
 			var httpRequest = new XMLHttpRequest();

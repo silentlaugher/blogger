@@ -216,6 +216,7 @@
 
 			<!-- js files -->
             <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/commentPagination.js"></script>
+            <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/removeComment.js"></script>
    		</div>
  		<!--MAIN-Right-inner-DIV-ENDS-HERE-->
 		</div>
