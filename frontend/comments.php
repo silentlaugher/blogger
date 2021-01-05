@@ -208,7 +208,7 @@
 			<div class="main-right-content fl-4">
 				<!-- Comments -->
 				<div id="posts">
-				 	{COMMENTS}
+                    <?php $dashObj->getAllComments('1','1','Published',$blog->blogID);?>
 				</div>
 			</div>
 
