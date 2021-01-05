@@ -48,3 +48,51 @@ button.addEventListener("click", function(event){
 	});
 });
 
+var descBtn = document.querySelector("#descBtn");
+var descBlock = document.querySelector("#descBlock");
+var descCancelBtn = document.querySelector("#descCancelBtn");
+var descSaveBtn = document.querySelector("#descSaveBtn");
+var descBox = document.querySelector("#descBox");
+
+descBtn.addEventListener("click", function(event){
+	descBlock.style.display = "block";
+
+	descCancelBtn.addEventListener("click", function(event){
+		descBlock.style.display = "none";
+	});
+
+	descSaveBtn.addEventListener("click", function(event){
+		descText = document.querySelector("#descInput");
+
+		if(descText.value.trim().length < '500'){
+			var formData = new FormData();
+
+			formData.append("description", descText.value.trim());
+			formData.append("blogID", blogID);
+
+			var httpRequest = new XMLHttpRequest();
+
+			if(httpRequest){
+				httpRequest.open('POST', 'http://localhost/blogger/backend/ajax/updateDescription.php', true);
+				httpRequest.onreadystatechange = function(){
+					if(this.readyState === 4 && this.status === 200){
+						if(/OwnnerError$/i.exec(this.responseText)){
+							alert("You cannot perform this action!");
+							location.reload(true);
+						}else{
+							this.value = this.responseText;
+						}
+
+						descBlock.style.display = "none";
+						descBox.innerHTML = descText.value;
+						
+					}
+				}
+
+				httpRequest.send(formData);
+			}	
+		}else{
+			document.querySelector("#descError").innerHTML = "Must be 500 characters or less!";
+		}
+	});
+});
