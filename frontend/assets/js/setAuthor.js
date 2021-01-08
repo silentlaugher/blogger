@@ -31,7 +31,7 @@ formBtn.addEventListener("click", function(event){
 				if(pass.value.length > 4){
                     //send ajax request
                 var formData  = new FormData();
-
+                formData.append("blogID", blogID);
                 formData.append("email", email.value);
                 formData.append("name", name.value);
                 formData.append("pass", pass.value);
