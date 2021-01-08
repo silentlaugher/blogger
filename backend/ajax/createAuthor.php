@@ -17,7 +17,11 @@
 							$password = $userObj->hash($pass);
 							if(!empty($_FILES['file']['name'][0])){
 								//upload image
-
+                                $image = $userObj->uploadImage($_FILES['file']);
+								if(!$image){
+									echo $userObj->imageError();
+									exit;
+								}
 							}else{
 								$image = "frontend/assets/images/avatar.png";
 							}
