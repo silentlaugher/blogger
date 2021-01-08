@@ -7,6 +7,8 @@ if(authorBtn){
             var menu = this.nextElementSibling;
             var option = document.querySelectorAll(".option");
             menu.classList.toggle("display");
+            var blogID = this.dataset.blog;
+            var authorID = this.dataset.author;
 
             if(option){
 				option.forEach(function(el){
