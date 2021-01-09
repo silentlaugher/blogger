@@ -1,10 +1,15 @@
 <?php 
     class Users{
         protected $db;
+        protected $imageError;
 
         public function __construct(){
             $this->db = Database::instance();
         }
+
+        public function imageError(){
+			return $this->imageError;
+		}
 
         public function emailExist($email){
             $stmt = $this->db->prepare("SELECT * FROM `users` WHERE `email` = :email");
@@ -117,5 +122,37 @@
                 $stmt->execute();
             }
         }
-    }
+
+        public function uploadImage($file){
+            $fileInfo = getimagesize($file['tmp_name']);
+            $fileTmp = $file['tmp_name'];
+            $fileName = $file['name'];
+            $fileSize = $file['size'];
+            $errors = $file['error'];
+
+            //get extenion
+            $ext = explode('.', $fileName);
+            $ext = strtolower(end($ext));
+
+            //extenions types 
+            $allowed = array('image/png', 'image/jpeg', 'image/jpg');
+
+            if(in_array($fileInfo['mime'], $allowed)){
+                $folder = 'frontend/content/';
+                $file = $folder.substr(md5(time().mt_rand()), 2,25).'.'.$ext;
+
+                if($errors === 0){
+                    if($fileSize <= 10485760){
+                        move_uploaded_file($fileTmp, $_SERVER['DOCUMENT_ROOT'].'/blogger/'.$file);
+                        return $file;
+                    }else{
+                        $this->imageError = "File is too large!";
+                    }
+                }
+            }else{
+                $this->imageError = "Invalid file type!";
+            }
+            //image-name.png
+        }
+     }
 ?>

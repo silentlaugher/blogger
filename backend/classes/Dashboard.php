@@ -284,5 +284,38 @@
 			}
 		}
 
-    }
+        public function getAuthorList($blogID){
+			$stmt = $this->db->prepare("SELECT * FROM `blogsAuth` `B` LEFT JOIN `users` `U` ON `U`.`userID` = `B`.`userID` WHERE `B`.`blogID` = :blogID");
+			$stmt->bindParam(":blogID", $blogID, PDO::PARAM_INT);
+			$stmt->execute();
+			$users = $stmt->fetchAll(PDO::FETCH_OBJ);
+			
+			if($users){
+				foreach($users as $user){
+					echo '<div class="ba-box">
+							<span class="ba-name">
+								<span><i class="fas fa-user-tie"></i></span>
+								<span>'.$user->fullName.'</span>
+							</span>
+							<span class="ba-email">
+								<a href="javascript:;">'.$user->email.'</a>
+							</span>
+							<span class="ba-stats">
+								<div class="authorBtn" id="authorMenu" data-blog="'.$user->blogID.'" data-author="'.$user->userID.'">
+									'.$user->role.'
+								</div>
+								<ul class="authorOption">
+									<li class="option" role="option" value="Admin">Admin</li>
+									<li class="option" role="option" value="Author">Author</li>
+								</ul> 
+							</span>
+							<span class="ba-delete" >
+								<a href="javascript:;" class="deleteAuthor" data-blog="'.$user->blogID.'" data-author="'.$user->userID.'"><i class="fas fa-times"></i></a>
+							</span>
+						</div>
+						';
+			    }
+			}
+		}
+	}
 ?>
