@@ -13,5 +13,6 @@
 
     $userObj = new Users;
     $dashObj = new Dashboard;
+    $blogObj = new Blog;
 
 ?>
