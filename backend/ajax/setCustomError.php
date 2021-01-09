@@ -13,7 +13,7 @@
 						$userObj->update('blogs', ['CustomError' => $error], ['blogID' => $blog->blogID]);
 					}
 				}else{
-					echo "Error, You don't have the rights to set an error message!";
+					echo "You don't have the rights to set an error message!";
 				}
 			} 
 		}

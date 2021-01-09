@@ -4,7 +4,6 @@ var customBlock = document.querySelector("#customBlock");
 var cSaveBtn = document.querySelector("#customSaveBtn");
 var cCancelBtn = document.querySelector("#customCancelBtn");
 
-
 customBtn.addEventListener("click", function(event){
 	customBlock.style.display  = "block";
 
