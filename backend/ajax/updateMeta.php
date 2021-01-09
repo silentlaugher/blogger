@@ -13,9 +13,8 @@
 						$userObj->update('blogs', ['MetaDescription' => $meta], ['blogID' => $blog->blogID]);
 					}
 				}else{
-					echo "Ownner Error";
+					echo "OwnnerError";
 				}
-
 			} 
 		}
 	}

@@ -211,7 +211,7 @@
 									<div class="blog-author">
 										<div class="ba-inner flex fl-c" id="authorList">
 											<!-- Authors -->
-											<?php $dashObj->getAuthorList($blog->blogID); ?>
+											<?php $dashObj->getAuthorList($blog->blogID);?>
 										</div>	
 									</div>
 									<div style="padding-top: 10px; padding-bottom: 10px;">
@@ -229,7 +229,7 @@
 											<div class="bt-error" id="emailError"> 	
 											</div>
 											<div class="ad-auth-head">
-												Add author Full name
+												Add author Fullname
 											</div>
 											<div>
 												<input type="text" name="fullname" id="nameInput">
@@ -549,6 +549,7 @@
     <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/removeAuthor.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/updateMeta.js"></script>
     <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/updatePostLimit.js"></script>
+    <script type="text/javascript" src="<?php echo BASE_URL;?>frontend/assets/js/setCustomError.js"></script>
     </div>
 <!--MAIN-Right-DIV-ENDS-HERE-->
 	</div>
