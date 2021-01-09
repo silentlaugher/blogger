@@ -50,7 +50,7 @@
 					<img src="<?php echo BASE_URL.$user->profileImage; ?>"/>
 					<div class="log-out">
 						<div>
-							<a href="{BASE_URL}frontend/logout.php">logout</a>
+							<a href="<?php echo BASE_URL ;?>frontend/logout.php">logout</a>
 						</div>
 					</div>
 				</div>
