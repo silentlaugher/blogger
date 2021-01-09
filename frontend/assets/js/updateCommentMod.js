@@ -3,7 +3,7 @@ var commentInput = document.getElementsByName('commentMod');
 
 commentBtn.addEventListener("click", function(event){
 	if(!(commentInput[0].checked || commentInput[1].checked)){
-		alert("Please Select to Allow Comments Moderation");
+		alert("Please Select to allow Comment Moderation");
 		return false;
 	}else{
 		for(i = 0; i < commentInput.length; i++ ){
